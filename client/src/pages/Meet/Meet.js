@@ -8,6 +8,7 @@ import io from "socket.io-client";
 
 import GlobalContext from "../../context/GlobalContext";
 import SettingsModal from "./SettingsModal/SettingsModal";
+import ExcludedPage from "./ExcludedPage/ExcludedPage";
 
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -15,6 +16,8 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext;
 const Meet = (props) => {
     const socketRef = React.useRef();
     const [participate, setParticipate] = React.useState(false)
+    const [isExcludedUser, setIsExcludedUser] = React.useState(false)
+
     const [participants, setParticipants] = React.useState([])
     const [loadingParticipations, setLoadingParticipation] = React.useState(true)
     const [errorParticipate, setErrorParticipate] = React.useState(null)
@@ -28,6 +31,7 @@ const Meet = (props) => {
     const [isOpenSettingsModal, setIsOpenSettingsModal] = React.useState(false)
     const [userAudioStream, setUserAudioStream] = React.useState(null)
     const [userVideoStream, setUserVideoStream] = React.useState(null)
+    const [isMessagingOn, setIsMessagingOn] = React.useState(null)
 
 
     React.useEffect(() => {
@@ -85,7 +89,6 @@ const Meet = (props) => {
             })
 
         }
-        // eslint-disable-next-line
     }, [selectedDevices?.videoInput, settings.isVideo, participate])
 
 
@@ -110,7 +113,6 @@ const Meet = (props) => {
                     setErrorParticipate("Camera or microphone blocked!")
                 })
         }
-        // eslint-disable-next-line
     }, [selectedDevices?.audioInput, settings.isAudio])
 
 
@@ -125,6 +127,8 @@ const Meet = (props) => {
                     if (res.data.meet) {
                         setParticipants(res.data.meet.users.map(userObj => userObj.user))
                         setMeetAdmin(res.data.meet.admin)
+                        setIsMessagingOn(res.data.meet.messagingState)
+                        console.log(res.data.meet)
                         socketRef.current = io.connect(process.env.REACT_APP_WEBSOCKETURL);
                         setLoadingParticipation(false)
 
@@ -139,6 +143,8 @@ const Meet = (props) => {
         else {
             setParticipants([])
             socketRef.current = io.connect(process.env.REACT_APP_WEBSOCKETURL);
+            setIsMessagingOn(true)
+
             history.push(`/meet/${props.match.params.meetId}`)
             setLoadingParticipation(false)
 
@@ -236,49 +242,54 @@ const Meet = (props) => {
     }
 
     if (context.user)
-        return (
-            <React.Fragment>
-                <SettingsModal
-                    setSelectedVideoInput={setSelectedVideoInputHandler}
-                    setSelectedAudioInput={setSelectedAudioInputHandler}
-                    setSelectedAudioOutput={setSelectedAudioOutputHandler}
-                    toggle={setIsOpenSettingsModal}
-                    isOpen={isOpenSettingsModal}
-                    selectedDevices={selectedDevices}
-                    devices={mediaDevices} />
-                {
-                    !participate ?
-                        <MeetSettings
-                            settings={settings}
-                            userAudioStream={userAudioStream}
-                            userVideoStream={userVideoStream}
-                            toggleAudioHandler={toggleAudioHandler}
-                            toggleVideoHandler={toggleVideoHandler}
-                            participants={participants}
-                            loading={loadingParticipations}
-                            error={errorParticipate}
-                            mediaDevices={mediaDevices}
-                            selectedDevices={selectedDevices}
-                            setupDevices={setupDevices}
-                            setMediaDevices={setMediaDevices}
-                            setSelectedDevices={setSelectedDevices}
-                            setSettings={setSettings}
-                            setIsOpenSettingsModal={setIsOpenSettingsModal}
-                            setLoading={(val) => setLoadingParticipation(val)}
-                            setErrorParticipate={(err) => setErrorParticipate(err)}
-                            participateFunction={participateHandler} />
-                        :
-                        <MeetCall
-                            isAdmin={context.user._id === meetAdmin || isNewMeeting}
-                            roomID={props.match.params.meetId}
-                            userAudioStream={userAudioStream}
-                            userVideoStream={userVideoStream}
-                            selectedDevices={selectedDevices}
-                            showSettingsModal={() => setIsOpenSettingsModal(true)}
-                            settings={settings} />
-                }
-            </React.Fragment>
-        );
+        if (!isExcludedUser)
+            return (
+                <React.Fragment>
+                    <SettingsModal
+                        setSelectedVideoInput={setSelectedVideoInputHandler}
+                        setSelectedAudioInput={setSelectedAudioInputHandler}
+                        setSelectedAudioOutput={setSelectedAudioOutputHandler}
+                        toggle={setIsOpenSettingsModal}
+                        isOpen={isOpenSettingsModal}
+                        selectedDevices={selectedDevices}
+                        devices={mediaDevices} />
+                    {
+                        !participate ?
+                            <MeetSettings
+                                settings={settings}
+                                userAudioStream={userAudioStream}
+                                userVideoStream={userVideoStream}
+                                toggleAudioHandler={toggleAudioHandler}
+                                toggleVideoHandler={toggleVideoHandler}
+                                participants={participants}
+                                loading={loadingParticipations}
+                                error={errorParticipate}
+                                mediaDevices={mediaDevices}
+                                selectedDevices={selectedDevices}
+                                setupDevices={setupDevices}
+                                setMediaDevices={setMediaDevices}
+                                setSelectedDevices={setSelectedDevices}
+                                setSettings={setSettings}
+                                setIsOpenSettingsModal={setIsOpenSettingsModal}
+                                setLoading={(val) => setLoadingParticipation(val)}
+                                setErrorParticipate={(err) => setErrorParticipate(err)}
+                                participateFunction={participateHandler} />
+                            :
+                            <MeetCall
+                                isAdmin={context.user._id === meetAdmin || isNewMeeting}
+                                roomID={props.match.params.meetId}
+                                userExcludedFunction={() => setIsExcludedUser(true)}
+                                selectedDevices={selectedDevices}
+                                isMessagingOn={isMessagingOn}
+                                showSettingsModal={() => setIsOpenSettingsModal(true)}
+                                settings={settings} />
+                    }
+                </React.Fragment>
+            );
+        else return (
+            <ExcludedPage />
+        )
+
     return null
 };
 

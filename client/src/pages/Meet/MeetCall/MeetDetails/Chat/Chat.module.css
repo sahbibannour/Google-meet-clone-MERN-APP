@@ -14,6 +14,12 @@
     overflow-y: scroll;
 }
 
+.messageDisabledText {
+    font-size: 12px;
+    color: rgb(172, 168, 168);
+    font-size: 400;
+    margin: 0;
+}
 
 .chatSection::-webkit-scrollbar {
     width: 16px;
@@ -100,6 +106,27 @@ h3 {
     padding-top: 5px;
     color: white;
     font-size: 14px;
+}
+
+.sendMsgSection {
+    padding: 20px;
+    border-top: 1px solid rgb(107, 103, 103);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #555;
+}
+
+
+.sendMsgSectionDisabled {
+    padding: 20px;
+    border-top: 1px solid rgb(107, 103, 103);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #555;
 }
 
 .textMessage:active {

@@ -38,6 +38,13 @@
     align-items: center;
 }
 
+.messageInfoText {
+    font-size: 13px;
+    color: rgb(172, 168, 168);
+    font-weight: 400;
+    margin: 0;
+}
+
 .tab {
     display: flex;
     align-items: center;
@@ -87,15 +94,6 @@ input {
 
 }
 
-.sendMsgSection {
-    padding: 20px;
-    border-top: 1px solid rgb(107, 103, 103);
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #555;
-}
 
 .navHeaderItem {
     font-size: 14px;

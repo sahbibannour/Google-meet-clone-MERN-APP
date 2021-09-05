@@ -12,6 +12,7 @@ const meetSchema = new mongoose.Schema({
 
         }
     }],
+    messagingState: { type: Boolean, default: true },
     usersHistory: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 })
 

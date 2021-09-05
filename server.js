@@ -29,6 +29,7 @@ server.listen(port, () => {
                 meet.users.push({ socketId: socket.id, user: user, state });
 
             }
+
             const usersInTheRoom = meet.users.filter(user => user.socketId != socket.id)
             socket.emit("all users", usersInTheRoom);
 
@@ -50,6 +51,24 @@ server.listen(port, () => {
             socket.on("send-message-meet", async ({ message }) => {
 
                 socket.to(roomID).emit('receive-message-meet', { message })
+
+            })
+            socket.on("mute-user-micro", async ({ socketId }) => {
+
+                socket.to(socketId).emit('muted-user-micro', { socketId })
+
+            })
+            socket.on("change-messagin-state", async ({ value }) => {
+
+                socket.to(roomID).emit('messagin-state-changed', { value })
+                await axios.patch(`${apiUrl}/meet/messaging/${roomID}/${value}`, { value })
+
+            })
+            socket.on("exclude-user", async ({ socketId, userName }) => {
+                socket.to(socketId).emit('user-excluded', { socketId })
+                socket.to(roomID).emit('broadcast-user-excluded', { userName })
+
+                await axios.patch(`${apiUrl}/meet/user-audio/${roomID}`, { socketId: socket.id, value })
 
             })
 

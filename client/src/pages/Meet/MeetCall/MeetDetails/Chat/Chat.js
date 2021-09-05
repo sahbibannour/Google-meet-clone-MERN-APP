@@ -7,10 +7,6 @@ const Chat = (props) => {
     const [msg, setMsg] = React.useState("");
     const [isShiftActivated, setIsShiftActivated] = React.useState(0)
 
-
-    React.useEffect(() => {
-        console.log(msg)
-    })
     const keyPressedHandler = (e) => {
         if (e.key === 'Enter' && msg.length > 0 && !isShiftActivated) {
             e.preventDefault();
@@ -46,7 +42,7 @@ const Chat = (props) => {
                 ))}
             </div>
 
-            <div className={classes.sendMsgSection}>
+            {props.canChat ? <div className={classes.sendMsgSection}>
                 <TextareaAutosize className={classes.inputMessage}
                     style={{ maxHeight: msg === "" ? '30px' : '200px' }}
                     maxRows={10}
@@ -58,7 +54,11 @@ const Chat = (props) => {
                     value={msg} />
 
                 <i className={`fas fa-paper-plane ${classes.icon}`} onClick={handleSendMsg}></i>
-            </div>
+            </div> :
+                <div className={classes.sendMsgSectionDisabled}>
+                    <h5 className={classes.messageDisabledText}>Messaging is disabled by the admin of the room</h5>
+                </div>
+            }
         </div>
     );
 };

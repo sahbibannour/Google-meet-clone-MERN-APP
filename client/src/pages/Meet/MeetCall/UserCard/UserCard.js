@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './UserCard.module.css'
 import * as vad from 'voice-activity-detection'
 import { Row, Col } from 'reactstrap'
+import Tooltip from '@material-ui/core/Tooltip';
 import WaveVisualizer from '../WaveVisualizer/WaveVisualizer';
 
 const UserCard = (props) => {
@@ -16,7 +17,7 @@ const UserCard = (props) => {
         if (ref.current)
             ref.current.srcObject = props.stream;
 
-    }, [props.streamVideo, props.isAudioOn, props.isVideoOn, props.stream]);
+    }, [props.streamVideo, props.isAudioOn, props.isVideoOn]);
 
     React.useEffect(() => {
         const audioContext = new AudioContext();
@@ -29,7 +30,7 @@ const UserCard = (props) => {
         };
         vad(audioContext, props.stream, voiceDectionOptions);
 
-        // eslint-disable-next-line
+
     }, [props.peerId]);
 
 
@@ -69,18 +70,37 @@ const UserCard = (props) => {
                         {props.name}
                     </h5>
                 </div>
-                {showmenuOptions &&
-                    <React.Fragment>
-                        {!props.isPinned ? <div className={classes.menuOptionsContainer}>
-                            <i className={`fas fa-thumbtack ${classes.pinIcon}`} onClick={props.pinUserFunction}></i>
+                {showmenuOptions && <div className={classes.menuControlsContainer} >
 
-                        </div> :
-                            <div className={classes.menuOptionsContainer} style={{ position: 'relative', cursor: 'pointer' }} onClick={props.unPinUserFunction}>
-                                <div className={classes.pinIconSlash}>/</div>
-                                <i className={`fas fa-thumbtack ${classes.pinIcon}`} ></i>
-                            </div>}
-                    </React.Fragment>
-                }
+                    <div className={classes.menuControlItem} onClick={props.pinUserFunction}>
+                        <i className={`fas fa-thumbtack ${classes.controlIcon}`} ></i>
+                    </div>
+
+                    {props.peerId !== 'current' && props.isAdmin && <React.Fragment>
+
+                        {!props.isAudioOn ? <Tooltip
+                            arrow
+                            PopperProps={{
+                                disablePortal: true,
+                            }}
+
+                            disableFocusListener
+                            disableTouchListener
+                            title="You cant reactive a user micro"
+                        >
+                            <div className={classes.menuControlItem} >
+                                <i className={`fas fa-microphone-slash ${classes.controlIcon}`}></i>
+                            </div>
+                        </Tooltip> :
+                            <div className={classes.menuControlItem} onClick={props.muteUserFunction}>
+                                <i className={`fas fa-microphone-slash ${classes.controlIcon}`}></i>
+                            </div>
+                        }
+                        <div className={classes.menuControlItem} onClick={() => props.excludeUserFunction(props.name)}>
+                            <i className={`fas fa-minus-circle ${classes.controlIcon}`}></i>
+                        </div>
+                    </React.Fragment>}
+                </div>}
             </Col>
         </Row>
     )

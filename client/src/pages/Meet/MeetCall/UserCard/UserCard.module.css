@@ -1,7 +1,6 @@
 .mainContainerVideoOn {
     width: 100%;
     height: 100%;
-
     border-radius: 10px;
     padding: 0;
     z-index: 999;
@@ -17,7 +16,6 @@
     width: 100%;
     height: 100%;
     border: 4px solid transparent;
-
     margin: auto !important;
     border-radius: 10px;
     padding: 30px;
@@ -133,30 +131,56 @@
     font-size: 13px;
 }
 
-.menuOptionsContainer {
-    position: absolute;
+
+.menuControlsContainer {
+    position: absolute !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 40px;
+    border-radius: 50px;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: calc(50% - 20px);
+    z-index: 999;
+    left: calc(50% - 60px);
+}
+
+.menuControlItem {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    border-radius: 50px;
-    width: 100px;
-    background-color: rgba(0, 0, 0, 0.6);
-    top: calc(50% - 20px);
-    left: calc(50% - 50px);
+    position: relative;
 }
 
-.pinIcon {
-    font-size: 18px;
+.menuControlItem:hover {
+    background-color: rgba(48, 44, 44, 0.8);
+}
+
+.controlIcon {
+    font-size: 17px;
     color: rgb(209, 209, 209);
     cursor: pointer;
 }
 
 .pinIconSlash {
     position: absolute;
-    top: 5px;
-    color: white;
-    transform: rotate(20deg);
+    top: 2px;
+    color: rgb(209, 209, 209);
+    transform: rotate(-40deg);
     font-size: 20px;
-    left: calc(50% -5px);
+    left: calc(50% - 5px);
+}
+
+.pinIconSlashTwo {
+    position: absolute;
+    top: 5px;
+    color: #153731;
+    transform: rotate(-40deg);
+    font-size: 20px;
+    left: calc(50% - 5px);
 }

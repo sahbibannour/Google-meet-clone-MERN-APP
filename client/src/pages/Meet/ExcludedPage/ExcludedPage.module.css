@@ -1,0 +1,33 @@
+.mainContainer {
+
+    height: 100vh;
+}
+
+.mainInfoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 70px;
+}
+
+.titleContainer {
+    margin: 20px 0px 20px 0px;
+}
+
+.titleText {
+    font-size: 25px;
+    font-weight: 400;
+    color: black;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.returnButton {
+    font-size: 14px;
+    color: white !important;
+    font-weight: 400;
+}

@@ -54,8 +54,9 @@ const MeetCall = (props) => {
     const firstLaunch = React.useRef(true)
     const [lastSpeaker, setLastSpeaker] = React.useState(null)
     const speakerInterval = React.useRef(null)
+    const [isMessagingOn, setIsMessagingOn] = React.useState(null)
+
     React.useEffect(() => {
-        console.log('heyyy')
         if (props.selectedDevices && streamObj) {
             const constraints = {
                 audio: { deviceId: props.selectedDevices.audioInput.deviceId ? { exact: props.selectedDevices.audioInput.deviceId } : undefined },
@@ -125,6 +126,8 @@ const MeetCall = (props) => {
     React.useEffect(() => {
         firstLaunch.current = false
         socketRef.current = io.connect(process.env.REACT_APP_WEBSOCKETURL);
+        console.log(props.isMessagingOn)
+        setIsMessagingOn(props.isMessagingOn)
         if (props.isAdmin) {
             setMeetInfoPopup(true)
             socketRef.current.on('request-received', ({ user, socketId }) => {
@@ -151,13 +154,13 @@ const MeetCall = (props) => {
 
             }
 
-
             setStreamObj(stream)
             socketRef.current.emit("join room", { roomID: props.roomID, user: context.user, state: props.settings })
 
             socketRef.current.on("all users", users => {
                 if (users.length === 0) {
                     setLoadingPeers(false)
+                    setPlayingSoundUserJoined(true)
 
                 }
                 users.forEach((userObj, userIndex) => {
@@ -173,8 +176,11 @@ const MeetCall = (props) => {
                             if (users.length > 0) {
                                 setPinnedUser({ peer, user: userObj.user, state: userObj.state, stream, socketId: userObj.socketId })
                             }
-                            if (users.length - 1 === userIndex)
+                            if (users.length - 1 === userIndex) {
                                 setLoadingPeers(false)
+                                setPlayingSoundUserJoined(true)
+
+                            }
                             return newParticipants
                         })
                         const audiosContainer = document.getElementById('audios')
@@ -204,8 +210,8 @@ const MeetCall = (props) => {
                     newAudioElement.srcObject = stream;
                     newAudioElement.play()
                     audiosContainer.appendChild(newAudioElement)
+                    setPlayingSoundUserJoined(true)
                     setParticipants(_participants => {
-                        setPlayingSoundUserJoined(true)
                         const newParticipants = [..._participants, { peer: peer, user: payload.user, stream, state: payload.state, socketId: payload.callerID }]
                         if (_participants.length === 0)
                             setPinnedUser({ peer: peer, user: payload.user, stream, state: payload.state, socketId: payload.callerID })
@@ -241,7 +247,29 @@ const MeetCall = (props) => {
                 })
 
             })
+            socketRef.current.on('muted-user-micro', () => {
 
+                setStreamObj(_stream => {
+                    _stream.getAudioTracks().forEach(track => track.enabled = false)
+                    return _stream
+                })
+                socketRef.current.emit('user-disable-audio', { value: false })
+                setIsAudio(false);
+
+            })
+
+            socketRef.current.on('user-excluded', () => {
+                socketRef.current.close()
+                peersRef.current.forEach(peerObj => peerObj.peer.destroy())
+                peersRef.current = []
+                setParticipants(_participants => {
+                    _participants.forEach(part => part.peer.destroy())
+                    return []
+                })
+
+                props.userExcludedFunction()
+
+            })
             socketRef.current.on('disable-user-video', ({ userId, value }) => {
                 setParticipants((_participants => {
                     const _participantsCopy = [..._participants]
@@ -260,6 +288,13 @@ const MeetCall = (props) => {
                     return _participantsCopy
                 }))
             })
+
+            socketRef.current.on('messagin-state-changed', ({ value }) => {
+                console.log(value)
+                setIsMessagingOn(value)
+
+            })
+
 
             socketRef.current.on("receiving returned signal", payload => {
                 const item = peersRef.current.find(p => p.peerID === payload.id);
@@ -291,7 +326,6 @@ const MeetCall = (props) => {
     React.useEffect(() => {
         return () => {
             if (streamObj) {
-                console.log('heyyyended')
                 streamObj.getTracks().forEach(track => track.stop())
             }
         }
@@ -484,6 +518,10 @@ const MeetCall = (props) => {
             return requestUsers
         })
     }
+    const onRefuseAllHandler = () => {
+        setIsOpenInvitationModal(false)
+        setRequestedUsers([])
+    }
 
     const onAcceptPersonHandler = (socketId) => {
         setRequestedUsers(_requestUsers => {
@@ -558,6 +596,22 @@ const MeetCall = (props) => {
         }
 
     }
+    const muteUserHandler = (userSocketId) => {
+        console.log('heyyyy mute')
+        socketRef.current.emit('mute-user-micro', { socketId: userSocketId })
+
+
+    }
+    const excludeUserHandler = (userSocketId, userName) => {
+        console.log(userName)
+        socketRef.current.emit('exclude-user', { socketId: userSocketId, userName })
+
+    }
+    const onChangeMessageStatusHandler = () => {
+        setIsMessagingOn(!isMessagingOn)
+        socketRef.current.emit('change-messagin-state', { value: !isMessagingOn })
+
+    }
     return (
         <React.Fragment>
             <div style={{ display: 'none' }} id='audios'>
@@ -594,6 +648,7 @@ const MeetCall = (props) => {
                                                                     isAudioOn={isAudio}
                                                                     onClick={setFullScreenHandler}
                                                                     name="You"
+                                                                    isAdmin={props.isAdmin}
                                                                     peerId={'current'}
                                                                     unPinUserFunction={() => setPinnedUser(null)}
                                                                     image={context.user.profileImage}
@@ -609,6 +664,10 @@ const MeetCall = (props) => {
                                                                     isVideoOn={pinnedUser.state.isVideo}
                                                                     isAudioOn={pinnedUser.state.isAudio}
                                                                     onClick={setFullScreenHandler}
+                                                                    isAdmin={props.isAdmin}
+                                                                    muteUserFunction={() => { muteUserHandler(pinnedUser.socketId) }}
+                                                                    excludeUserFunction={(userName) => { excludeUserHandler(pinnedUser.socketId, userName) }}
+
                                                                     unPinUserFunction={() => setPinnedUser(null)}
                                                                     peerId={pinnedUser.socketId}
                                                                     videoStream={pinnedUser.stream}
@@ -633,6 +692,9 @@ const MeetCall = (props) => {
                                                                     isAudioOn={participant.state.isAudio}
                                                                     image={participant.user.profileImage}
                                                                     stream={participant.stream}
+                                                                    isAdmin={props.isAdmin}
+                                                                    muteUserFunction={() => { muteUserHandler(participant.socketId) }}
+                                                                    excludeUserFunction={(userName) => { excludeUserHandler(participant.socketId, userName) }}
                                                                     isPinned={pinnedUser?.peer._id === participant.peer._id}
                                                                     pinUserFunction={() => setPinnedUser(participant)}
                                                                     unPinUserFunction={() => setPinnedUser(null)}
@@ -649,6 +711,7 @@ const MeetCall = (props) => {
                                                                 isVideoOn={isVideo}
                                                                 isAudioOn={isAudio}
                                                                 name="You"
+                                                                isAdmin={props.isAdmin}
                                                                 peerId={'current'}
                                                                 isPinned={pinnedUser === 'current'}
                                                                 isLastSpeaker={lastSpeaker === 'current'}
@@ -685,6 +748,9 @@ const MeetCall = (props) => {
                                             sendMessageFunction={sendMessageHandler}
                                             isOpenMessenger={isOpenMessenger}
                                             participants={participants}
+                                            isAdmin={props.isAdmin}
+                                            isMessagingOn={isMessagingOn}
+                                            onChangeMessageStatus={onChangeMessageStatusHandler}
                                             pinnedPeerId={(pinnedUser && pinnedUser !== 'current') ? pinnedUser.peer._id : pinnedUser ? 'current' : null}
                                             currentUser={context.user}
                                             messagesList={messagesList}
@@ -732,6 +798,7 @@ const MeetCall = (props) => {
                             isOpen={isOpenInvitationModal}
                             onAcceptPerson={onAcceptPersonHandler}
                             refusePerson={onRefusePersonHandler}
+                            refuseAll={onRefuseAllHandler}
                             onAcceptAll={onAcceptAllHandler}
                             toggle={setIsOpenInvitationModal} />
 

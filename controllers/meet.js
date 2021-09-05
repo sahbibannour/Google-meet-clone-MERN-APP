@@ -26,6 +26,18 @@ exports.getMeet = async (req, res) => {
     }
 }
 
+exports.updateMessagingStatus = async (req, res) => {
+    try {
+
+        await Meet.updateOne({ room: req.params.meetId }, { $set: { messagingState: req.params.status } })
+        res.status(200).json({ message: 'meet messaging status updated' })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error })
+    }
+}
+
+
 
 exports.deleteMeet = async (req, res) => {
     try {

@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './PinnedUserCard.module.css'
 import * as vad from 'voice-activity-detection'
+import Tooltip from '@material-ui/core/Tooltip';
 import WaveVisualizer from '../WaveVisualizer/WaveVisualizer';
 const PinnedUserCard = (props) => {
 
@@ -59,9 +60,37 @@ const PinnedUserCard = (props) => {
                     </div>
 
                 }
-                {showmenuOptions && <div className={classes.menuOptionsContainer} style={{ position: 'relative', cursor: 'pointer' }} onClick={props.unPinUserFunction}>
-                    <div className={classes.pinIconSlash}>/</div>
-                    <i className={`fas fa-thumbtack ${classes.pinIcon}`} ></i>
+                {showmenuOptions && <div className={classes.menuControlsContainer}>
+                    <div className={classes.menuControlItem} onClick={props.unPinUserFunction}>
+                        <div className={classes.pinIconSlash}>\</div>
+                        <div className={classes.pinIconSlashTwo}>\</div>
+                        <i className={`fas fa-thumbtack ${classes.controlIcon}`} ></i>
+                    </div>
+
+                    {props.peerId !== 'current' && props.isAdmin && <React.Fragment>
+
+                        {!props.isAudioOn ? <Tooltip
+                            arrow
+                            PopperProps={{
+                                disablePortal: true,
+                            }}
+
+                            disableFocusListener
+                            disableTouchListener
+                            title="You cant reactive a user micro"
+                        >
+                            <div className={classes.menuControlItem} >
+                                <i className={`fas fa-microphone-slash ${classes.controlIcon}`}></i>
+                            </div>
+                        </Tooltip> :
+                            <div className={classes.menuControlItem} onClick={props.muteUserFunction}>
+                                <i className={`fas fa-microphone-slash ${classes.controlIcon}`}></i>
+                            </div>
+                        }
+                        <div className={classes.menuControlItem} onClick={() => props.excludeUserFunction(props.name)}>
+                            <i className={`fas fa-minus-circle ${classes.controlIcon}`}></i>
+                        </div>
+                    </React.Fragment>}
                 </div>}
                 <div className={classes.userInfoContainer}>
                     <h5 className={classes.userNameText}>
