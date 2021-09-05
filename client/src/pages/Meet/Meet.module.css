@@ -1,0 +1,18 @@
+.mainContainer {
+
+
+    padding: 20px;
+    height: calc(100vh - 90px);
+    width: 100%;
+    background-color: #202124;
+
+}
+
+
+.notificationsContainer {
+    position: absolute;
+    bottom: 100px;
+    z-index: 999;
+    right: 10px;
+    border-radius: 5px;
+}

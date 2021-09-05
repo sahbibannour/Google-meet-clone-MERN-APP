@@ -1,0 +1,135 @@
+.contentClassName {
+    border-radius: 20px !important;
+    min-height: 500px;
+    z-index: 99999999999 !important;
+
+}
+
+
+.settingTitle {
+    font-size: 20px;
+    font-weight: 400;
+    color: #34373a;
+}
+
+.className {
+    max-width: 800px !important;
+    z-index: 999999999 !important;
+}
+
+.headerContainer {
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 20px;
+}
+
+.modelHeader {
+    font-size: 15px;
+    font-weight: 600;
+    color: black;
+    margin: 0;
+}
+
+.toggleModalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 20px 10px 20px;
+}
+
+
+.mainItemContainer {
+    margin: 10px 0px 10px 0px;
+}
+
+.itemContainer {
+    margin: 10px 0px;
+}
+
+.iconTimes {
+    font-size: 20px;
+    color: #999999;
+}
+
+.sidebarContainer {
+    border-right: 1px solid #999999;
+
+    padding: 0px 20px 20px 20px;
+
+}
+
+.categoryTitle {
+    color: #007fff;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.menuItemContainer {
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 15px 10px 15px;
+    background-color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.menuItemContainerActive {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 15px 10px 15px;
+    background-color: #E8F0FE;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 0px 20px 20px 0px;
+}
+
+.menuItemContainer:hover {
+    background-color: #e9e9e9;
+}
+
+.menuIconActive {
+    font-size: 18px;
+    color: #1967d2;
+
+    margin-right: 10px;
+}
+
+.menuIcon {
+    font-size: 18px;
+    color: #5f6368;
+    margin-right: 10px;
+}
+
+.menuText {
+    font-size: 13px;
+
+    color: #5f6368;
+}
+
+.menuTextActive {
+    font-size: 13px;
+    color: #1967d2;
+
+}
+
+
+.modalButton {
+    margin: 0px 5px 0px 5px;
+    background-color: transparent !important;
+    color: #007fff !important;
+    transition: all linear 0.2s !important;
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+.modalButton:hover {
+    background-color: transparent !important;
+    border-bottom: 2px solid #007fff !important;
+    color: #007fff !important;
+}

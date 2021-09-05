@@ -1,0 +1,26 @@
+.mainContainer {
+    height: 100vh;
+    background-color: #202124;
+    width: 100%;
+}
+
+.loadingContainer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.loadingContentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingText {
+
+    font-size: 26px;
+    margin: 0px 10px;
+    color: white;
+
+}

@@ -1,0 +1,114 @@
+.meetingInfoBlock {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    z-index: 999;
+    width: min-content;
+}
+
+
+
+
+.meetingHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #222;
+
+}
+
+.smallText {
+    font-size: 13px;
+    color: #222;
+}
+
+.copyIcon {
+    cursor: pointer;
+    color: #555;
+    margin: 0 10px;
+}
+
+.timesIcon {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.permissionIcon {
+    color: #4385f4;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.personIcon {
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.permissionText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.urlText {
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    background: none;
+    flex: 1;
+    color: #555;
+}
+
+.meetLink {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f1f3f5;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.infoText {
+    color: #222;
+    font-size: 14px;
+}
+
+.title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+    color: black;
+}
+
+.addPeopleBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #007FFF;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    margin-top: 20px;
+
+}
+
+@media screen and (max-width: 768px) {
+    .meetingInfoBlock {
+
+        top: 10px !important;
+        left: 10px !important;
+        background: #fff !important;
+        border-radius: 10px !important;
+        padding: 10px !important;
+        width: calc(100vw - 20px) !important;
+    }
+
+}

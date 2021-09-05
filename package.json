@@ -1,0 +1,24 @@
+{
+    "name": "interact-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server",
+        "devStart": "nodemon server"
+    },
+    "author": "intract.co",
+    "license": "ISC",
+    "devDependencies": {
+        "dotenv": "^10.0.0",
+        "nodemon": "^2.0.9"
+    },
+    "dependencies": {
+        "axios": "^0.21.1",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mongoose": "^5.13.0",
+        "socket.io": "^4.2.0",
+        "socket.io-client": "^4.1.3"
+    }
+}

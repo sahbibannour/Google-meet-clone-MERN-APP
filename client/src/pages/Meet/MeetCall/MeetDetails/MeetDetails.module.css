@@ -1,0 +1,129 @@
+.mainContainer {
+    height: calc(100% - 20px);
+}
+
+.messengerContainer {
+    position: relative;
+    background-color: #3C4043;
+    border-radius: 10px;
+
+
+}
+
+.contentContainer {
+    height: calc(100vh - 270px);
+
+}
+
+.mainTitle {
+    font-size: 20px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    height: 25px;
+}
+
+.messengerHeader {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.messengerHeaderTabs {
+    display: flex;
+    align-items: center;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    color: #555;
+    cursor: pointer;
+
+}
+
+.chatSection {
+    padding: 20px;
+    flex: 1;
+    overflow-y: scroll;
+}
+
+.chatBlock {
+    margin-bottom: 30px;
+}
+
+.sender {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+
+h3 {
+    margin: 0;
+    font-weight: 400;
+    color: white;
+}
+
+.icon {
+    cursor: pointer;
+    color: white;
+    margin-right: 10px;
+    font-size: 17px;
+}
+
+
+input {
+    padding: 5px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #eee;
+
+}
+
+.sendMsgSection {
+    padding: 20px;
+    border-top: 1px solid rgb(107, 103, 103);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #555;
+}
+
+.navHeaderItem {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: white;
+}
+
+.small {
+    margin-left: 5px;
+    font-weight: 300;
+}
+
+.textMessage {
+    margin-left: 10px;
+    margin: 0;
+    padding-top: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+.textMessage:active {
+    border-bottom: 2px solid #007fff;
+    color: #007fff;
+}
+
+.textMessage:hover {
+    cursor: pointer;
+    background: rgba(0, 121, 107, 0.039);
+}

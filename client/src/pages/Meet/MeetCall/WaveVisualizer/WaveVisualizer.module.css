@@ -1,0 +1,16 @@
+.mainContainer {
+    background-color: #007FFF;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.waveItem {
+    background-color: white;
+    width: 4px;
+    transition: all linear 0.1s;
+
+}

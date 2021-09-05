@@ -1,0 +1,40 @@
+.mainContainer {
+    background: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    min-width: 250px;
+    max-width: 250px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    ;
+
+}
+
+
+.notificationHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #007FFF;
+
+
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.userText {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+
+.notificationMsg {
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

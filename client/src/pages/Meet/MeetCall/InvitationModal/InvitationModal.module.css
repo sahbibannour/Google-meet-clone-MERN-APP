@@ -1,0 +1,65 @@
+.contentClassName {
+    border-radius: 20px !important;
+    padding: 20px;
+}
+
+.headerContainer {
+    margin-bottom: 20px;
+}
+
+.modelHeader {
+    font-size: 15px;
+    font-weight: 600;
+    color: black;
+    margin: 0;
+}
+
+.mainUserItemContainer {
+    display: flex;
+    align-items: center;
+    margin: 10px 0px 10px 0px;
+    justify-content: space-between;
+}
+
+.userInfoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.userImage {
+    margin-right: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userNameText {
+    font-size: 14px;
+    color: black;
+    font-size: 500;
+}
+
+.modalFooter {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.modalButton {
+    margin: 0px 5px 0px 5px;
+    background-color: transparent !important;
+    color: #007fff !important;
+    transition: all linear 0.2s !important;
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+.modalButton:hover {
+    background-color: transparent !important;
+    border-bottom: 2px solid #007fff !important;
+    color: #007fff !important;
+}

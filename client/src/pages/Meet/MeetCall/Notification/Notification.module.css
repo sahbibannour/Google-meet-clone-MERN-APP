@@ -1,0 +1,18 @@
+.mainContainer {
+    position: absolute;
+    left: 40px;
+    bottom: 60px;
+    background-color: black;
+    min-width: 200px;
+    padding: 20px 15px 20px 15px;
+    border-radius: 5px;
+}
+
+.notificationContentContainer {}
+
+
+.notificationContentText {
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+}

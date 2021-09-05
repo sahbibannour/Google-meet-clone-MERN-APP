@@ -1,0 +1,40 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    box-shadow: none !important;
+}
+
+body {
+    background-color: #f8f9ff;
+    padding-right: 0px !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-nav .dropdown-menu.show {
+    width: 300px !important;
+    padding: 5px 0px 0px 0px !important;
+    margin-top: 5px !important;
+    left: -200% !important;
+    width: 350px !important;
+}
+
+.dropdown-nav .dropdown-menu.show::before {
+    left: 50% !important;
+    height: 20px !important;
+    top: -10 !important;
+    margin: 0 !important;
+    z-index: 999999 !important;
+}

@@ -1,0 +1,206 @@
+.footerItem {
+    width: 100%;
+    padding: 10px;
+    height: fit-content;
+    display: flex !important;
+    background-color: #202124;
+
+    flex-direction: row !important;
+    margin: 0 !important;
+}
+
+.leftItemIconBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px 10px 20px;
+
+}
+
+.leftItemIcon {
+    margin-left: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.leftItemIconBlock:hover {
+    cursor: pointer;
+    background: #eee;
+}
+
+.centerItem {
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    padding: 10px;
+    justify-content: center;
+}
+
+
+.centerItemIconBlock {
+    background: #3C4043;
+    border: 1px solid #3C4043;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centerItemIconBlockPhone {
+    background: #d93025;
+    border: 1px solid #d93025;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.centerItemIcon {
+    color: white;
+    font-size: 17px;
+
+}
+
+.red {
+    color: #d93025;
+}
+
+.centerItemIconBlock:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px #ddd;
+}
+
+.redBg {
+    background: #d93025;
+}
+
+.badgeContainer {
+    position: absolute;
+    top: -20px;
+    right: -5px;
+    background-color: #5e5e5e;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.badgeText {
+    color: white;
+    font-size: 13px;
+    margin: 0;
+}
+
+.activeIcon {
+    color: #007fff !important;
+
+}
+
+.activeBgIcon {
+    background-color: #007fff;
+}
+
+
+
+.rightItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.rightItemIconBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px 10px 20px;
+}
+
+.rightItemIcon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.rightItemIconBlock:hover {
+    cursor: pointer;
+    background: #eee;
+}
+
+
+.headerItems {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 10px;
+
+}
+
+.alertCircleIcon {
+    position: absolute;
+    background: #007fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    top: 10px;
+    right: 20px;
+}
+
+.dateBlock {
+    font-size: 20px;
+    color: #999999;
+    font-weight: 400;
+    margin: 0;
+
+    font-weight: 400;
+}
+
+.profile {
+    font-size: 32px;
+    color: #007fff;
+}
+
+.icon {
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+
+}
+
+.userImage {
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.meetInfoText {
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .footerItem {
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        flex-direction: column !important;
+    }
+}

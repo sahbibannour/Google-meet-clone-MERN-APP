@@ -1,0 +1,104 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo {
+    width: 255px;
+    height: 194px;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: #92929d;
+    text-align: center;
+}
+
+.block {
+    margin-top: 30px !important;
+    background-color: white;
+    box-shadow: 5px 5px 20px 1px #8888882d;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.field {
+    width: 100%;
+    margin-top: 15px !important;
+}
+
+.label {
+    color: #696974;
+    font-size: 1em !important;
+    font-weight: 500 !important;
+}
+
+.checkbox {
+    width: 100%;
+    margin-top: 10px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.forgotPassColumn {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px !important;
+}
+
+.rememberMeColumn {
+    display: flex;
+    padding-left: 20px !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .forgotPassColumn {
+        justify-content: center;
+        padding-right: 0px !important;
+        padding: 0 !important;
+    }
+    .rememberMeColumn {
+        justify-content: center;
+        padding-left: 0px !important;
+        padding: 0 !important;
+    }
+}
+
+.forgot {
+    text-decoration: none;
+    color: #007fff !important;
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 0 !important;
+}
+
+.loginBtn {
+    width: 100%;
+    height: 52px;
+    margin-top: 10px !important;
+    color: white;
+    background-color: #007fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9em;
+}

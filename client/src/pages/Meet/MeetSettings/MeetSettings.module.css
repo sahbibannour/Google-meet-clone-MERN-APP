@@ -1,0 +1,167 @@
+.mainContainer {
+    height: 100vh;
+}
+
+.centerItemIconBlock {
+    background: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 10px;
+
+}
+
+
+.mainVideoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.redBg {
+    background: #d93025;
+    color: #fff;
+}
+
+.activeIcon {
+    color: white;
+}
+
+
+
+.centerItemIcon {
+    color: #555;
+    font-size: 20px;
+
+}
+
+.videoContainer {
+    /* width: 100%;
+    height: 100%; */
+    width: 100%;
+    height: 400px;
+    border-radius: 10px;
+    position: relative;
+    background-color: black;
+
+    overflow: hidden;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+        0 2px 6px 2px rgba(60, 64, 67, 0.149);
+}
+
+.video {
+    top: 0;
+    left: 0;
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+}
+
+.controlsContainer {
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    align-items: center;
+    left: 0px;
+}
+
+.participateTitle {
+    text-align: center;
+    font-size: 28px;
+}
+
+.participantsPicturesContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 0;
+}
+
+.participantImage {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.participantsText {
+    font-size: 13px;
+    text-align: center;
+    margin: 10px 0;
+    color: black;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.participateButton {
+    border-radius: 30px !important;
+    background-color: #007FFF !important;
+    color: white !important;
+    padding: 10px 20px 10px 20px !important;
+    border: none !important;
+}
+
+
+.centerItemIconBlockVoiceOn {
+    z-index: 99;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+
+.centerItemIconBlockVoiceOff {
+    z-index: 99;
+    background-color: #555;
+    padding: 10px;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    margin: 0;
+    left: 20px;
+}
+
+
+.settingsContainer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    color: white;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.settingsIcon {
+    color: inherit;
+}
+
+.settingsContainer:hover {
+    background-color: #555;
+}
+
+@media screen and (max-width: 768px) {
+    .videoContainer {
+        height: 300px;
+    }
+
+}

@@ -1,0 +1,60 @@
+.mainContainer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.participantContainer {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.participantInfoContainer {
+    display: flex;
+    align-items: center;
+}
+
+
+.participantImage {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+.centerItemIconBlock {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+
+}
+
+.nameText {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.pinIcon {
+    font-size: 18px;
+    color: white;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.pinIconSlash {
+    position: absolute;
+    top: -5px;
+    color: white;
+    transform: rotate(20deg);
+    font-size: 20px;
+    left: calc(50% - 12px);
+}
